@@ -1,0 +1,104 @@
+<enviMDFe xmlns="http://www.portalfiscal.inf.br/mdfe" versao="3.00">
+    <idLote>{{ idLote }}</idLote>
+	
+    {% for MDFe in MDFes %}
+    <MDFe xmlns="http://www.portalfiscal.inf.br/mdfe">
+        <infMDFe versao="3.00" Id="{{MDFe.infMDFe.Id }}">
+            <ide>
+                {% with ide = MDFe.infMDFe.ide %}
+				<cUF>{{ ide.cUF }}</cUF>
+				<tpAmb>{{ ide.tpAmb }}</tpAmb>				
+				<tpEmit>{{ ide.tpEmit }}</tpEmit>				
+				<mod>{{ ide.mod }}</mod>				
+				<serie>{{ ide.serie }}</serie>				
+				<nMDF>{{ ide.nMDF }}</nMDF>				
+				<cMDF>{{ ide.cMDF }}</cMDF>				
+				<cDV>{{ ide.cDV }}</cDV>
+				<modal>{{ ide.modal }}</modal>				
+				<dhEmi>{{ ide.dhEmi }}</dhEmi>				
+				<tpEmis>{{ ide.tpEmis }}</tpEmis>				
+				<procEmi>{{ ide.procEmi }}</procEmi>			
+				<verProc>{{ ide.verProc }}</verProc>				
+				<UFIni>{{ ide.UFIni }}</UFIni>
+				<UFFim>{{ ide.UFFim }}</UFFim>				
+				<infMunCarrega>
+				<cMunCarrega>{{ ide.cMunCarrega }}</cMunCarrega>
+				<xMunCarrega>{{ ide.xMunCarrega }}</xMunCarrega>
+				</infMunCarrega> 
+				{% endwith %}
+            </ide>
+            <emit>
+                {% with emit = MDFe.infMDFe.emit %}				
+				<CNPJ>{{ emit.cnpj_cpf }}</CNPJ>
+				<IE>{{ emit.IE }}</IE>			
+				<xNome>{{ emit.xNome|normalize|escape }}</xNome>				
+				<enderEmit>
+                    <xLgr>{{ emit.enderEmit.xLgr|normalize|escape }}</xLgr>
+                    <nro>{{ emit.enderEmit.nro }}</nro>
+                    <xBairro>{{ emit.enderEmit.xBairro|normalize|escape }}</xBairro>
+                    <cMun>{{ emit.enderEmit.cMun }}</cMun>
+                    <xMun>{{ emit.enderEmit.xMun|normalize }}</xMun>
+                    <UF>{{ emit.enderEmit.UF }}</UF>
+                    <CEP>{{ emit.enderEmit.CEP }}</CEP>
+                    <fone>{{ emit.enderEmit.fone }}</fone>
+					<email>{{ emit.enderEmit.email }}</email>
+                </enderEmit>			
+                {% endwith %}
+            </emit>
+			
+			<infModal versaoModal="3.00" Id="{{ MDFe.infModal.Id }}">			  
+				{% if MDFe.infMDFe.rodo is defined %}
+				<rodo>
+					<infANTT>
+						<RNTRC>{{ rodo.infANTT.RNTRC }}</RNTRC>
+					</infANTT>
+					<veicTracao>
+						<placa>{{ rodo.veicTracao.placa }}</placa>
+						<RENAVAM>{{ rodo.veicTracao.RENAVAM }}</RENAVAM>
+						<tara>{{ rodo.veicTracao.tara }}</tara>
+							<condutor>
+							   <xNome>{{ rodo.condutor.xNome }}</xNome>
+							   <CPF>{{ rodo.condutor.CPF }}</CPF>
+							</condutor>
+						<tpRod>{{ rodo.veicTracao.tpRod }}</tpRod>
+						<tpCar>{{ rodo.veicTracao.tpCar }}</tpCar>
+						<UF>{{ rodo.veicTracao.UF }}</UF>
+					</veicTracao>
+				</rodo>
+				{% endif %}
+			</infModal>
+			
+			<infDoc>
+			{% if MDFe.infMDFe.infDoc is defined %}
+                {% with doc = MDFe.infMDFe.infDoc.infMunDescarga %}			
+			    <infMunDescarga>
+				    <cMunDescarga>{{ doc.cMunDescarga }}</cMunDescarga>
+				    <xMunDescarga>{{ doc.xMunDescarga }}</xMunDescarga>
+					    <infNFe>
+						    <chNFe>{{ doc.infNFe.chNFe }}</chNFe>
+					    </infNFe>
+			    </infMunDescarga>
+				{% endwith %}
+			{% endif %}
+            </infDoc>			
+			
+			{% if MDFe.infMDFe.tot is defined %}
+			<tot>
+				<qNFe>{{ tot.qNFe }}</qNFe>
+				<vCarga>{{ tot.vCarga }}</vCarga>
+				<cUnid>{{ tot.cUnid }}</cUnid>
+				<qCarga>{{ tot.qCarga }}</qCarga>
+			</tot>
+			{% endif %}			
+			
+        </infMDFe>
+		
+		<infMDFeSupl>
+			<qrCodMDFe>{{ MDFe.infMDFe.qrCode }}</qrCodMDFe>
+		</infMDFeSupl>
+		
+ 
+        
+    </MDFe>
+    {% endfor %}
+</enviMDFe>
