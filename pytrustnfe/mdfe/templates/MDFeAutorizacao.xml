@@ -1,6 +1,5 @@
 <enviMDFe xmlns="http://www.portalfiscal.inf.br/mdfe" versao="3.00">
     <idLote>{{ idLote }}</idLote>
-	
     {% for MDFe in MDFes %}
     <MDFe xmlns="http://www.portalfiscal.inf.br/mdfe">
         <infMDFe versao="3.00" Id="{{MDFe.infMDFe.Id }}">
@@ -22,8 +21,8 @@
 				<UFIni>{{ ide.UFIni }}</UFIni>
 				<UFFim>{{ ide.UFFim }}</UFFim>				
 				<infMunCarrega>
-				<cMunCarrega>{{ ide.cMunCarrega }}</cMunCarrega>
-				<xMunCarrega>{{ ide.xMunCarrega }}</xMunCarrega>
+				<cMunCarrega>{{ ide.infMunCarrega.cMunCarrega }}</cMunCarrega>
+				<xMunCarrega>{{ ide.infMunCarrega.xMunCarrega }}</xMunCarrega>
 				</infMunCarrega> 
 				{% endwith %}
             </ide>
@@ -39,15 +38,14 @@
                     <cMun>{{ emit.enderEmit.cMun }}</cMun>
                     <xMun>{{ emit.enderEmit.xMun|normalize }}</xMun>
                     <UF>{{ emit.enderEmit.UF }}</UF>
-                    <CEP>{{ emit.enderEmit.CEP }}</CEP>
                     <fone>{{ emit.enderEmit.fone }}</fone>
 					<email>{{ emit.enderEmit.email }}</email>
                 </enderEmit>			
                 {% endwith %}
             </emit>
 			
-			<infModal versaoModal="3.00" Id="{{ MDFe.infModal.Id }}">			  
-				{% if MDFe.infMDFe.rodo is defined %}
+			<infModal versaoModal="3.00">
+                {% with rodo = MDFe.infMDFe.infModal.rodo %}	
 				<rodo>
 					<infANTT>
 						<RNTRC>{{ rodo.infANTT.RNTRC }}</RNTRC>
@@ -65,7 +63,7 @@
 						<UF>{{ rodo.veicTracao.UF }}</UF>
 					</veicTracao>
 				</rodo>
-				{% endif %}
+				{% endwith %}
 			</infModal>
 			
 			<infDoc>
@@ -74,20 +72,35 @@
 			    <infMunDescarga>
 				    <cMunDescarga>{{ doc.cMunDescarga }}</cMunDescarga>
 				    <xMunDescarga>{{ doc.xMunDescarga }}</xMunDescarga>
+                        {% for nf in doc.infNFe %}
 					    <infNFe>
-						    <chNFe>{{ doc.infNFe.chNFe }}</chNFe>
+						    <chNFe>{{ nf.chNFe }}</chNFe>
 					    </infNFe>
+                        {% endfor %}
 			    </infMunDescarga>
 				{% endwith %}
 			{% endif %}
             </infDoc>			
 			
+			{% if MDFe.infMDFe.seg is defined %}
+			<seg>
+                <infResp>
+                    <respSeg>1</respSeg>
+                </infResp>
+                <infSeg>
+                    <xSeg>MAPFRE SEGUROS GERAIS S.A.</xSeg>
+                    <CNPJ>61074175000138</CNPJ>
+                </infSeg>
+                    <nApol>2843/0000001/21</nApol>
+            </seg>
+            {% endif %}       
+            
 			{% if MDFe.infMDFe.tot is defined %}
 			<tot>
-				<qNFe>{{ tot.qNFe }}</qNFe>
-				<vCarga>{{ tot.vCarga }}</vCarga>
-				<cUnid>{{ tot.cUnid }}</cUnid>
-				<qCarga>{{ tot.qCarga }}</qCarga>
+				<qNFe>{{ MDFe.infMDFe.tot.qNFe }}</qNFe>
+				<vCarga>{{ MDFe.infMDFe.tot.vCarga }}</vCarga>
+				<cUnid>{{ MDFe.infMDFe.tot.cUnid }}</cUnid>
+				<qCarga>{{ MDFe.infMDFe.tot.qCarga }}</qCarga>
 			</tot>
 			{% endif %}			
 			
