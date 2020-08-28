@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import hashlib
 import os
+import re
 import requests
 from lxml import etree
 from .patch import has_patch
@@ -32,9 +33,9 @@ def _generate_mdfe_id(**kwargs):
             ),
             "modelo": item["infMDFe"]["ide"]["mod"],
             "serie": item["infMDFe"]["ide"]["serie"],
-            "numero": item["infMDFe"]["ide"]["nNF"],
+            "numero": item["infMDFe"]["ide"]["nMDF"],
             "tipo": item["infMDFe"]["ide"]["tpEmis"],
-            "codigo": item["infMDFe"]["ide"]["cNF"],
+            "codigo": item["infMDFe"]["ide"]["cMDF"],
         }
         chave_mdfe = ChaveNFe(**vals)
         chave_mdfe = gerar_chave(chave_mdfe, "MDFe")
@@ -43,12 +44,24 @@ def _generate_mdfe_id(**kwargs):
 
         
 def _render(certificado, method, sign, **kwargs):
-    
+
     path = os.path.join(os.path.dirname(__file__), "templates")
     xmlElem_send = render_xml(path, "%s.xml" % method, True, **kwargs)
-    xml_element = etree.fromstring(xmlElem_send)
+    #import pudb;pu.db
+    #etree.parse('/home/publico/mdfe.xml')
+    
+    # GRAVA O XML
+    mydata = etree.tostring(xmlElem_send)
+    myfile = open("/home/publico/mdfe.xml", "w")
+    myfile.write(mydata.decode("utf-8"))
+    myfile.close()
+    
+    #print(xmlElem_send)
+    
+    #xml_element = etree.fromstring(xmlElem_send)
+    xml_element = etree.fromstring(mydata)
     modelo = xmlElem_send.find(".//{http://www.portalfiscal.inf.br/mdfe}mod")
-    modelo = modelo.text if modelo is not None else "55"
+    modelo = modelo if modelo is not None else "58"
 
     if sign:
         signer = Assinatura(certificado.pfx, certificado.password)
@@ -68,7 +81,6 @@ def _render(certificado, method, sign, **kwargs):
     else:
         xml_send = etree.tostring(xmlElem_send, encoding=str)
     return xml_send
-
 
 def gerar_qrcode(id_csc: int, csc: str, xml_send: str, cert = False) -> str:
     xml = etree.fromstring(xml_send)
