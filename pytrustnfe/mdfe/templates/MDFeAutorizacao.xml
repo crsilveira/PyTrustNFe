@@ -54,14 +54,22 @@
 						<placa>{{ rodo.veicTracao.placa }}</placa>
 						<RENAVAM>{{ rodo.veicTracao.RENAVAM }}</RENAVAM>
 						<tara>{{ rodo.veicTracao.tara }}</tara>
-							<condutor>
-							   <xNome>{{ rodo.condutor.xNome }}</xNome>
-							   <CPF>{{ rodo.condutor.CPF }}</CPF>
-							</condutor>
+						<condutor>
+	                            <xNome>{{ rodo.veicTracao.condutor.xNome }}</xNome>
+                                <CPF>{{ rodo.veicTracao.condutor.CPF }}</CPF>
+                        </condutor>
 						<tpRod>{{ rodo.veicTracao.tpRod }}</tpRod>
 						<tpCar>{{ rodo.veicTracao.tpCar }}</tpCar>
 						<UF>{{ rodo.veicTracao.UF }}</UF>
 					</veicTracao>
+					<veicReboque>
+						<placa>{{ rodo.veicReboque.placa }}</placa>
+						<RENAVAM>{{ rodo.veicReboque.RENAVAM }}</RENAVAM>
+						<tara>{{ rodo.veicReboque.tara }}</tara>
+						<tpRod>{{ rodo.veicReboque.tpRod }}</tpRod>
+						<tpCar>{{ rodo.veicReboque.tpCar }}</tpCar>
+						<UF>{{ rodo.veicReboque.UF }}</UF>
+					</veicReboque>
 				</rodo>
 				{% endwith %}
 			</infModal>
