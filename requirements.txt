@@ -1,25 +1,17 @@
 # Sign xml dependencies
-signxml==2.9.0 ; python_version < '3.7'
-signxml ; python_version >= '3.7'
-lxml >= 4.2.1
-cryptography >= 3.4.8, <= 23.2.0
-pyOpenSSL >= 22.1.0
-certifi >=  2018.1.18
-
-# XmlSec
-xmlsec >= 1.3.13
-
-# pytrustnfe dependencies
-Jinja2
-pytz
-zeep
-reportlab
-urllib3
-suds-community
-suds-requests4
-
-# Test dependencies
+lxml >= 3.6.0, < 3.7
+nose
+mock
 coveralls
-pytest>=4.1.1
-pytest-cov
+https://github.com/odoo-brazil/pyxmlsec/archive/master.zip
+Jinja2
+signxml
+suds >= 0.4
+suds_requests >= 0.3
+defusedxml >= 0.4.1, < 0.5
+eight >= 0.3.0, < 0.4
+cryptography >= 1.4, < 1.8
+pyOpenSSL >= 16.0.0, < 17
+certifi >= 2015.11.20.1
+reportlab
 
