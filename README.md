@@ -2,9 +2,13 @@
 Biblioteca Python que tem por objetivo enviar NFe, NFCe e NFSe no Brasil
 
 [![Coverage Status](https://coveralls.io/repos/danimaribeiro/PyTrustNFe/badge.svg?branch=master3)](https://coveralls.io/r/danimaribeiro/PyTrustNFe?branch=master3)
-[![Code Health](https://landscape.io/github/danimaribeiro/PyTrustNFe/master3/landscape.svg?style=flat)](https://landscape.io/github/danimaribeiro/PyTrustNFe/master3)
-[![Build Status](https://travis-ci.org/danimaribeiro/PyTrustNFe.svg?branch=master3)](https://travis-ci.org/danimaribeiro/PyTrustNFe)
+[![Build Status](https://app.travis-ci.com/danimaribeiro/PyTrustNFe.svg?branch=master3)](https://travis-ci.org/danimaribeiro/PyTrustNFe)
 [![PyPI version](https://badge.fury.io/py/PyTrustNFe3.svg)](https://badge.fury.io/py/PyTrustNFe3)
+
+Pacotes necessários para instalação:
+
+```apt-get install --no-install-recommends python3-pip python3-wheel python3-setuptools python3-openssl python3-lxml```
+
 
 Dependências:
 * PyXmlSec
