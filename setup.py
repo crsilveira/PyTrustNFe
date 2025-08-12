@@ -2,11 +2,11 @@
 from setuptools import setup, find_packages
 
 
-VERSION = "1.0.60"
+VERSION = "1.0.61"
 
 
 setup(
-    name="pytrustnfe3",
+    name="pytrustnfe12",
     version=VERSION,
     author="Danimar Ribeiro",
     author_email="danimaribeiro@gmail.com",
@@ -44,7 +44,7 @@ later (LGPLv2+)",
             "xml/schemas/*xsd",
         ]
     },
-    url="https://github.com/danimaribeiro/PyTrustNFe",
+    url="https://github.com/crsilveira/PyTrustNFe@reforma2",
     license="LGPL-v2.1+",
     description="PyTrustNFe é uma biblioteca para envio de NF-e",
     long_description=open("README.md", "r").read(),
