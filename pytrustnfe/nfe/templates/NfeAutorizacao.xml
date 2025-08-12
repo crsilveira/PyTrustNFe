@@ -742,6 +742,7 @@
             <total>
                 {% with total = NFe.infNFe.total %}
                 <ICMSTot>
+                    <cClassTrib></cClassTrib>
                     <vBC>{{ total.vBC }}</vBC>
                     <vICMS>{{ total.vICMS }}</vICMS>
                     <vICMSDeson>{{ total.vICMSDeson }}</vICMSDeson>
