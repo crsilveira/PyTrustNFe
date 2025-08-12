@@ -722,6 +722,10 @@
                     </ICMSUFDest>
                     {% endif %}
                     {% endwith %}
+                    <IBSCBS>
+                        <CST></CST>
+                        <cClassTrib></cClassTrib>
+                    </IBSCBS>                    
                 </imposto>
                 {% if det.impostoDevol is defined %}
                 <impostoDevol>
