@@ -933,6 +933,16 @@
                 <hashCSRT>{{ NFe.infNFe.infRespTec.hashCSRT }}</hashCSRT>
             </infRespTec>
             {% endif %}
+            {% if NFe.infNFe.agropecuario is defined %}
+            <agropecuario>
+                <defensivo>
+                    {% for agr in NFe.infNFe.agropecuario.nfe40_defensivo %}
+                        <nReceituario>{{ agr.nfe40_nReceituario|normalize|escape }}</nReceituario>
+                        <CPFRespTec>{{ agr.nfe40_CPFRespTec|normalize|escape }}</CPFRespTec>
+                    {% endfor %}
+                </defensivo>
+            </agropecuario>
+            {% endif %}            
         </infNFe>
         {% if NFe.infNFe.ide.mod == '65' %}
         <infNFeSupl>
