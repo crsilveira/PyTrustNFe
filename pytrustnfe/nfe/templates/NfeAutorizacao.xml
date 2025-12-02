@@ -721,11 +721,29 @@
                         <vICMSUFRemet>{{ imposto.ICMSUFDest.vICMSUFRemet }}</vICMSUFRemet>
                     </ICMSUFDest>
                     {% endif %}
-                    {% endwith %}
+                    {% if imposto.IBSCBS is defined %}
                     <IBSCBS>
-                        <CST></CST>
-                        <cClassTrib></cClassTrib>
-                    </IBSCBS>                    
+                        <CST>{{ imposto.IBSCBS.CST }}</CST>
+                        <cClassTrib>{{ imposto.IBSCBS.cClassTrib }}</cClassTrib>
+                        <gIBSCBS>
+                            <vBC>{{ imposto.IBSCBS.gIBSCBS.vBC }}</vBC>
+                            <gIBSUF>
+                                <pIBSUF>{{ imposto.IBSCBS.gIBSCBS.gIBSUF.pIBSUF }}</pIBSUF>
+                                <vIBSUF>{{ imposto.IBSCBS.gIBSCBS.gIBSUF.vIBSUF }}</vIBSUF>
+                            </gIBSUF>
+                            <gIBSMun>
+                                <pIBSMun>{{ imposto.IBSCBS.gIBSCBS.gIBSMun.pIBSMun }}</pIBSMun>
+                                <vIBSMun>{{ imposto.IBSCBS.gIBSCBS.gIBSMun.vIBSMun }}</vIBSMun>
+                            </gIBSMun>
+                            <vIBS>{{ imposto.IBSCBS.gIBSCBS.vIBS }}</vIBS>
+                            <gCBS>
+                                <pCBS>{{ imposto.IBSCBS.gIBSCBS.gCBS.pCBS }}</pCBS>
+                                <vCBS>{{ imposto.IBSCBS.gIBSCBS.gCBS.vCBS }}</vCBS>
+                            </gCBS>
+                        </gIBSCBS>
+                    </IBSCBS>
+                    {% endif %}
+                    {% endwith %}                    
                 </imposto>
                 {% if det.impostoDevol is defined %}
                 <impostoDevol>
@@ -767,6 +785,33 @@
                     <vNF>{{ total.vNF }}</vNF>
                     <vTotTrib>{{ total.vTotTrib }}</vTotTrib>
                 </ICMSTot>
+                {% if total.IBSCBS_Present %}
+                <IBSCBSTot>
+                    <vBCIBSCBS>{{ total.vBC_IBSCBS }}</vBCIBSCBS>
+                    <gIBS>
+                        <gIBSUF>
+                            <vDif>0.00</vDif>
+                            <vDevTrib>0.00</vDevTrib>
+                            <vIBSUF>{{ total.vIBSUF_Total }}</vIBSUF>
+                        </gIBSUF>
+                        <gIBSMun>
+                            <vDif>0.00</vDif>
+                            <vDevTrib>0.00</vDevTrib>
+                            <vIBSMun>{{ total.vIBSMun_Total }}</vIBSMun>
+                        </gIBSMun>
+                        <vIBS>{{ total.vIBS_Total }}</vIBS>
+                        <vCredPres>0.00</vCredPres>
+                        <vCredPresCondSus>0.00</vCredPresCondSus>
+                    </gIBS>
+                    <gCBS>
+                        <vDif>0.00</vDif>
+                        <vDevTrib>0.00</vDevTrib>
+                        <vCBS>{{ total.vCBS_Total }}</vCBS>
+                        <vCredPres>0.00</vCredPres>
+                        <vCredPresCondSus>0.00</vCredPresCondSus>
+                    </gCBS>
+                </IBSCBSTot>
+                {% endif %}
                 {% endwith %}
                 {% if NFe.infNFe.ISSQNtot is defined %}
                 <ISSQNtot>
