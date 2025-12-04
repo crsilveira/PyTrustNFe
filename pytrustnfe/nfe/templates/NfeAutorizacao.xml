@@ -729,15 +729,33 @@
                             <vBC>{{ imposto.IBSCBS.gIBSCBS.vBC }}</vBC>
                             <gIBSUF>
                                 <pIBSUF>{{ imposto.IBSCBS.gIBSCBS.gIBSUF.pIBSUF }}</pIBSUF>
+                                {% if imposto.IBSCBS.gIBSCBS.gIBSUF.ibs_red %}
+                                <gRed>
+                                    <pRedAliq>{{ imposto.IBSCBS.gIBSCBS.gIBSUF.gRed.pRedAliq }}</pRedAliq>
+                                    <pAliqEfet>{{ imposto.IBSCBS.gIBSCBS.gIBSUF.gRed.pAliqEfet }}</pAliqEfet>
+                                </gRed>
+                                {% endif %}
                                 <vIBSUF>{{ imposto.IBSCBS.gIBSCBS.gIBSUF.vIBSUF }}</vIBSUF>
                             </gIBSUF>
                             <gIBSMun>
                                 <pIBSMun>{{ imposto.IBSCBS.gIBSCBS.gIBSMun.pIBSMun }}</pIBSMun>
+                                {% if imposto.IBSCBS.gIBSCBS.gIBSMun.ibs_red %}
+                                <gRed>
+                                    <pRedAliq>{{ imposto.IBSCBS.gIBSCBS.gIBSMun.gRed.pRedAliq }}</pRedAliq>
+                                    <pAliqEfet>{{ imposto.IBSCBS.gIBSCBS.gIBSMun.gRed.pAliqEfet }}</pAliqEfet>
+                                </gRed>
+                                {% endif %}
                                 <vIBSMun>{{ imposto.IBSCBS.gIBSCBS.gIBSMun.vIBSMun }}</vIBSMun>
                             </gIBSMun>
                             <vIBS>{{ imposto.IBSCBS.gIBSCBS.vIBS }}</vIBS>
                             <gCBS>
                                 <pCBS>{{ imposto.IBSCBS.gIBSCBS.gCBS.pCBS }}</pCBS>
+                                {% if imposto.IBSCBS.gIBSCBS.gCBS.cbs_red %}
+                                <gRed>
+                                    <pRedAliq>{{ imposto.IBSCBS.gIBSCBS.gCBS.gRed.pRedAliq }}</pRedAliq>
+                                    <pAliqEfet>{{ imposto.IBSCBS.gIBSCBS.gCBS.gRed.pAliqEfet }}</pAliqEfet>
+                                </gRed>
+                                {% endif %}
                                 <vCBS>{{ imposto.IBSCBS.gIBSCBS.gCBS.vCBS }}</vCBS>
                             </gCBS>
                         </gIBSCBS>
