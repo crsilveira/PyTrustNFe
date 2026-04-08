@@ -998,12 +998,12 @@
             {% endif %}
             {% if NFe.infNFe.agropecuario is defined %}
             <agropecuario>
+                {% for agr in NFe.infNFe.agropecuario.nfe40_defensivo %}
                 <defensivo>
-                    {% for agr in NFe.infNFe.agropecuario.nfe40_defensivo %}
-                        <nReceituario>{{ agr.nfe40_nReceituario|normalize|escape }}</nReceituario>
-                        <CPFRespTec>{{ agr.nfe40_CPFRespTec|normalize|escape }}</CPFRespTec>
-                    {% endfor %}
+                    <nReceituario>{{ agr.nfe40_nReceituario|normalize|escape }}</nReceituario>
+                    <CPFRespTec>{{ agr.nfe40_CPFRespTec|normalize|escape }}</CPFRespTec>
                 </defensivo>
+                {% endfor %}
             </agropecuario>
             {% endif %}            
         </infNFe>
